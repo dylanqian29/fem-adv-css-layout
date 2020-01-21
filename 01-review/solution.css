@@ -1,7 +1,9 @@
 /* scroll for starting CSS and hints; instructions in JS window -> */
+
+/* flexbox */
 .wrapper {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row wrap; /* row is row, wrap defines if it is forced to be on one line or can be wrapped into multiple lines */
   justify-content: space-between; /* fill the space between flex items */
   align-content: stretch; /* stretch the item to fill the space */
 }
@@ -28,6 +30,22 @@
 }
 
 
+/* grid */
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* divide the column into 3 pieces evenly */
+  grid-gap: 1rem;
+}
+
+.a,
+.h {
+  grid-column: span 2;
+}
+
+.c {
+  grid-column: span 3;
+}
 
 
 
