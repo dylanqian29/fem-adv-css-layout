@@ -5,10 +5,98 @@ Below is a starting navigation bar formatted for mobile and desktop. MQ is set t
 
 */
 
+header .row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.menu-toggle {
+  color: #333;
+  margin-right: 1rem;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus {
+ color: #C85028;
+}
+
+.main-menu {
+  position: fixed; /* it is fixed on the page, no matter how you scroll */
+  display: none; /* so you cant see it */
+  left: -200px; /* any number is fine, but need to be the same as the width for ul*/
+  top: 0;
+  height: 100%;
+  overflow-x: visible;
+  overflow-y: auto;
+  transition: left 0.3s ease;
+  z-index: 999;
+}
+
+
+.main-menu ul {
+  list-style: none;
+  margin: 0; 
+  padding-top: 2.5em;
+  min-height: 100%;
+  width: 200px;
+  background: #1a1a1a;
+}
+
+.main-menu a {
+  display: block; /* make the whole block clickable on mobile*/
+  padding: 0.75em;
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid #383838;
+}
+
+.main-menu li:first-child a {
+  border-top: 1px solid #383838;
+}
+
+.main-menu a:hover,
+.main-menu a:focus {
+  background: #333;
+  text-decoration: underline;
+}
+
+.main-menu .menu-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.main-menu:target { /* when main-menu is targeted, like when its clicked */
+  display: block;
+  left: 0;
+  outline: none;
+}
+
+.main-menu:target .menu-close {
+  z-index: 1001;
+}
+
+.main-menu:target ul {
+  position: relative;
+  z-index: 1000
+}
+
+.main-menu:target + .backdrop { /* immediate sibling select, read as when backdrop is an immediate sibling of main-menu and main-menu is targeted*/
+  position: fixed;
+  display: block;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  background-color: rgba(0,0,0,0.85);
+  cursor: default;
+}
 
 header {
     border-bottom: 4px solid #9EA9C1;
 }
+
 main {
   border-top: 2px solid #dddddd;
   margin-top: 0.5rem;
@@ -31,11 +119,55 @@ nav a {
           border: none;
           margin: 0;
       }
+      
     nav {
         border-top: 4px solid #9EA9C1;
         border-bottom: 1px solid #dddddd;
         padding: 0.3rem 0;
     }
+
+    /* we basically need to revert all the stuff we did for mobile view above*/
+
+    .menu-toggle,
+    .main-menu .menu-close {
+      display: none;
+    }
+
+    .main-menu {
+      position: static; /* default position*/
+      display: block;
+    }
+
+    .main-menu ul{
+      padding: 0;
+      height: auto;
+      width: auto;
+      background: none;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .main-menu li {
+      display: inline-block;
+    }
+
+    .main-menu li:first-child a {
+      border-top: none;
+    }
+
+    .main-menu a {
+      color: #c85028;
+      border-bottom: none;
+      display: inline;
+    }
+
+    .main-menu a:hover,
+    .main-menu a:focus {
+      background: noen;
+      color: #7e64be;
+      text-decoration: none;
+    }
+    
     nav ul {      
       text-align: center;
     }
